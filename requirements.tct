@@ -1,7 +1,8 @@
-pandas
-numpy
-yfinance
-fredapi
+pandas==3.0.5
+numpy==2.5.1
+yfinance==1.5.2
+fredapi==0.5.2
 statsmodels
-matplotlib
+matplotlib==0.2.2
 jupyter
+ipykernel==7.3.0
