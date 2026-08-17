@@ -6,3 +6,6 @@ statsmodels
 matplotlib==0.2.2
 jupyter
 ipykernel==7.3.0
+requests
+pyarrow
+python-dotenv
