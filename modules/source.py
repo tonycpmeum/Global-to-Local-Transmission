@@ -36,4 +36,4 @@ class Sources:
    )
 
 RAW_DATA_PATH = '../data/raw'
-PROCESSED_DATA_PATH = ''
+PROCESSED_DATA_PATH = '../data/processed'
