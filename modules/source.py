@@ -12,8 +12,9 @@ class Source(str):
 @dataclass(frozen=True)
 class Sources:
    OPR = Source('OPR')
-   cpi_inflation_yoy = Source('cpi_inflation_yoy')
+   FFR_midpoint = Source('FFR_midpoint')
    EFFR = Source('EFFR', 'DFF')
+   cpi_inflation_yoy = Source('cpi_inflation_yoy')
    UST_10Y = Source('UST_10Y', '^TNX')
    USDMYR = Source('USDMYR', 'MYR=X')
    DXY = Source('DXY', 'DX-Y.NYB')
