@@ -1,6 +1,11 @@
 from dataclasses import dataclass
 from typing import Optional, Tuple
 
+RAW_DATA_PATH = '../data/raw'
+PROCESSED_DATA_PATH = '../data/processed'
+monthly_master_csv = 'MONTHLY_MASTER.csv'
+daily_master_csv = 'DAILY_MASTER.csv'
+
 class Source(str):
    ticker: Optional[str]
 
@@ -35,5 +40,3 @@ class Sources:
       Source('KLCI', '^KLSE'), Source('financials'), Source('plantation'), Source('reits'), Source('technology'), Source('energy'), Source('industrial_products')
    )
 
-RAW_DATA_PATH = '../data/raw'
-PROCESSED_DATA_PATH = '../data/processed'
