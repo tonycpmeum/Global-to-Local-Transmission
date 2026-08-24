@@ -8,10 +8,8 @@ source venv/bin/activate      # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-API keys are loaded from `.env` file at the project root and are gitignored.
-
+API keys are loaded from `.env` file at the project root.
 If you're running this notebook for the first time:
-1. Create `.env` at project root
-2. Copy `.env.example` to `.env`
-3. Open `.env` and replace the placeholder with your own FRED API key
-4. Restart the kernel if `.env` was created or edited after the kernel started
+1. `cp .env.example .env` - Duplicate `.env.example` as `.env`
+2. Open `.env` and replace the placeholder with your own FRED API key
+3. **Restart the kernel:** if `.env` was created or edited after starting your notebook.
