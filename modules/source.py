@@ -17,6 +17,7 @@ class Source(str):
 @dataclass(frozen=True)
 class Sources:
    OPR = Source('OPR')
+   MGS_10Y = Source('MGS_10Y')
    FFR_midpoint = Source('FFR_midpoint')
    EFFR = Source('EFFR', 'DFF')
    cpi_inflation_yoy = Source('cpi_inflation_yoy')
