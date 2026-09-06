@@ -10,3 +10,4 @@ requests
 pyarrow
 python-dotenv
 holidays
+openpyxl

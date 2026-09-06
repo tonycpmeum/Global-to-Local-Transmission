@@ -3,8 +3,9 @@ from typing import Optional, Tuple
 
 RAW_DATA_PATH = '../data/raw'
 PROCESSED_DATA_PATH = '../data/processed'
-monthly_master_csv = 'MONTHLY_MASTER.csv'
-daily_master_csv = 'DAILY_MASTER.csv'
+OUTPUT_FOLDER_PATH = '../output'
+parquet_monthly = 'monthly.parquet'
+parquet_daily = 'daily.parquet'
 
 class Source(str):
    ticker: Optional[str]
@@ -19,7 +20,6 @@ class Sources:
    OPR = Source('OPR')
    MGS_10Y = Source('MGS_10Y')
    FFR_midpoint = Source('FFR_midpoint')
-   EFFR = Source('EFFR', 'DFF')
    cpi_inflation_yoy = Source('cpi_inflation_yoy')
    UST_10Y = Source('UST_10Y', '^TNX')
    USDMYR = Source('USDMYR', 'MYR=X')
