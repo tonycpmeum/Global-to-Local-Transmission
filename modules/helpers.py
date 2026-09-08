@@ -1,5 +1,8 @@
 from pandas import Series, DataFrame, MultiIndex, Index, to_numeric, concat
 from functools import reduce
+from matplotlib.axes import Axes
+from .source import fed_regimes
+
 
 def clean_api_response(data: Series | DataFrame, name: str) -> DataFrame:
    """Normalize Series/DataFrames from APIs into single header DataFrane."""
@@ -49,3 +52,23 @@ def ffill_with_tracking(df: DataFrame, target_index):
    is_filled = (~was_original) & filled.notna()
 
    return filled, is_filled
+
+def add_regime_shading(ax: Axes, show_ir=False, show_covid=False) -> None:
+   """Applies interest rate regimes and COVID markers to a plot."""
+   config = {
+      "hiking": ("red", 0.09, "Rate Hike"),
+      "cutting": ("green", 0.09, "Rate Cut"),
+      "covid_EXCLUDE": ("gray", 0.20, "COVID"),
+   }
+
+   regimes = []
+   if show_ir:
+      regimes.extend(["hiking", "cutting"])
+   if show_covid:
+      regimes.append("covid_EXCLUDE")
+
+   for regime in regimes:
+      color, alpha, label = config[regime]
+      for start, end in fed_regimes.get(regime, []):
+         ax.axvspan(start, end, color=color, alpha=alpha, zorder=0)
+         ax.text(start + (end - start) / 2, 1.01, label, color=color, ha="center", fontsize=6, transform=ax.get_xaxis_transform(), clip_on=False)

@@ -1,11 +1,10 @@
-pandas==3.0.5
-numpy==2.5.1
-yfinance==1.5.2
-fredapi==0.5.2
-statsmodels
-matplotlib==0.2.2
+pandas
+numpy
+yfinance
+fredapi
+matplotlib
 jupyter
-ipykernel==7.3.0
+ipykernel
 requests
 pyarrow
 python-dotenv
