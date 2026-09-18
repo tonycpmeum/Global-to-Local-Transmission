@@ -1,4 +1,4 @@
-from pandas import Series, DataFrame, MultiIndex, Index, to_numeric, concat
+from pandas import Timestamp, Series, DataFrame, MultiIndex, Index, to_numeric, concat
 from functools import reduce
 from matplotlib.axes import Axes
 from .source import fed_regimes
@@ -55,6 +55,18 @@ def ffill_with_tracking(df: DataFrame, target_index):
 
 def add_regime_shading(ax: Axes, show_ir=False, show_covid=False) -> None:
    """Applies interest rate regimes and COVID markers to a plot."""
+   fed_regimes: dict[list[tuple[Timestamp]]] = {
+      "hiking": [
+         (Timestamp('2015-12-17'), Timestamp('2019-07-30')), 
+         (Timestamp('2022-03-17'), Timestamp('2024-09-17'))
+         ],
+      "cutting": [
+         (Timestamp('2019-07-31'), Timestamp('2020-03-02')), 
+         (Timestamp('2024-09-18'), Timestamp('2025-12-10'))
+         ],
+      "covid_EXCLUDE": [(Timestamp('2020-03-03'), Timestamp('2022-03-16'))]
+   }
+
    config = {
       "hiking": ("red", 0.09, "Rate Hike"),
       "cutting": ("green", 0.09, "Rate Cut"),
