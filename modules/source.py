@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Optional, Tuple
 
 RAW_DATA_PATH = '../data/raw'
@@ -6,8 +7,10 @@ PROCESSED_DATA_PATH = '../data/processed'
 OUTPUT_FOLDER_PATH = '../output'
 parquet_monthly = f"{PROCESSED_DATA_PATH}/monthly.parquet"
 parquet_daily = f"{PROCESSED_DATA_PATH}/daily.parquet"
+parquet_fomc =f"{PROCESSED_DATA_PATH}/fomc_event_data.parquet"
 
-
+START = datetime(2015, 1, 1)
+END = datetime(2026, 8, 25)
 
 class Source(str):
    ticker: Optional[str]
@@ -35,10 +38,3 @@ class Sources:
    technology = Source('technology')
    energy = Source('energy')
    industrial_products = Source('industrial_products')
-
-   low_freq: Tuple[Source, ...] = (Source('OPR'), Source('cpi_inflation_yoy'), Source('Palm_Oil', 'PPOILUSDM'))
-   us_market: Tuple[Source, ...] = (Source('EFFR', 'DFF'), Source('UST_10Y', '^TNX'), Source('DXY', 'DX-Y.NYB'), Source('VIX', '^VIX'), Source('Brent_Oil', 'BZ=F'))
-   my_market: Tuple[Source, ...] = (
-      Source('KLCI', '^KLSE'), Source('financials'), Source('plantation'), Source('REITs'), Source('technology'), Source('energy'), Source('industrial_products')
-   )
-

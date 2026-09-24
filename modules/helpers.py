@@ -1,8 +1,6 @@
 from pandas import Timestamp, Series, DataFrame, MultiIndex, Index, to_numeric, concat
 from functools import reduce
 from matplotlib.axes import Axes
-from .source import fed_regimes
-
 
 def clean_api_response(data: Series | DataFrame, name: str) -> DataFrame:
    """Normalize Series/DataFrames from APIs into single header DataFrane."""
@@ -55,32 +53,21 @@ def ffill_with_tracking(df: DataFrame, target_index):
 
 def add_regime_shading(ax: Axes, show_ir=False, show_covid=False) -> None:
    """Applies interest rate regimes and COVID markers to a plot."""
-   fed_regimes: dict[list[tuple[Timestamp]]] = {
-      "hiking": [
-         (Timestamp('2015-12-17'), Timestamp('2019-07-30')), 
-         (Timestamp('2022-03-17'), Timestamp('2024-09-17'))
-         ],
-      "cutting": [
-         (Timestamp('2019-07-31'), Timestamp('2020-03-02')), 
-         (Timestamp('2024-09-18'), Timestamp('2025-12-10'))
-         ],
-      "covid_EXCLUDE": [(Timestamp('2020-03-03'), Timestamp('2022-03-16'))]
+   configs = {
+      "hiking": ("red", 0.09, "Rate Hike", [('2015-12-17', '2019-07-30'), ('2022-03-17', '2024-09-17')]),
+      "cutting": ("green", 0.09, "Rate Cut", [('2019-07-31', '2020-03-02'), ('2024-09-18', '2025-12-10')]),
+      "covid": ("gray", 0.20, "COVID", [('2020-03-03', '2022-03-16')]),
    }
 
-   config = {
-      "hiking": ("red", 0.09, "Rate Hike"),
-      "cutting": ("green", 0.09, "Rate Cut"),
-      "covid_EXCLUDE": ("gray", 0.20, "COVID"),
-   }
+   selected = (["hiking", "cutting"] if show_ir else []) + (["covid"] if show_covid else [])
 
-   regimes = []
-   if show_ir:
-      regimes.extend(["hiking", "cutting"])
-   if show_covid:
-      regimes.append("covid_EXCLUDE")
-
-   for regime in regimes:
-      color, alpha, label = config[regime]
-      for start, end in fed_regimes.get(regime, []):
+   for key in selected:
+      color, alpha, label, timespan = configs[key]
+      for start_str, end_str in timespan:
+         start, end = Timestamp(start_str), Timestamp(end_str)
          ax.axvspan(start, end, color=color, alpha=alpha, zorder=0)
-         ax.text(start + (end - start) / 2, 1.01, label, color=color, ha="center", fontsize=6, transform=ax.get_xaxis_transform(), clip_on=False)
+         ax.text(
+            start + (end - start) / 2, 1.01, label, 
+            color=color, ha="center", fontsize=6, 
+            transform=ax.get_xaxis_transform(), clip_on=False
+         )
