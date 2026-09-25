@@ -5,6 +5,7 @@ from typing import Optional, Tuple
 RAW_DATA_PATH = '../data/raw'
 PROCESSED_DATA_PATH = '../data/processed'
 OUTPUT_FOLDER_PATH = '../output'
+parquet_raw_levels = f"{PROCESSED_DATA_PATH}/raw_levels.parquet"
 parquet_monthly = f"{PROCESSED_DATA_PATH}/monthly.parquet"
 parquet_daily = f"{PROCESSED_DATA_PATH}/daily.parquet"
 parquet_fomc =f"{PROCESSED_DATA_PATH}/fomc_event_data.parquet"
