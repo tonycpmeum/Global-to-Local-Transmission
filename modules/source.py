@@ -23,8 +23,9 @@ class Source(str):
 @dataclass(frozen=True)
 class Sources:
    OPR = Source('OPR')
-   MGS_10Y = Source('MGS_10Y')
    FFR_midpoint = Source('FFR_midpoint')
+   rate_differential = Source('FFR_OPR_diff')
+   MGS_10Y = Source('MGS_10Y')
    cpi_inflation_yoy = Source('cpi_inflation_yoy')
    UST_10Y = Source('UST_10Y', '^TNX')
    USDMYR = Source('USDMYR', 'MYR=X')
