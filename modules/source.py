@@ -27,6 +27,7 @@ class Sources:
    rate_differential = Source('FFR_OPR_diff')
    MGS_10Y = Source('MGS_10Y')
    cpi_inflation = Source('cpi_inflation')
+   IPI = Source('IPI')
    UST_10Y = Source('UST_10Y', '^TNX')
    USDMYR = Source('USDMYR', 'MYR=X')
    DXY = Source('DXY', 'DX-Y.NYB')
