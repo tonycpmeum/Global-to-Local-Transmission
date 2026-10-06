@@ -1,11 +1,10 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional, Tuple
+from typing import Optional
 
 RAW_DATA_PATH = '../data/raw'
 PROCESSED_DATA_PATH = '../data/processed'
 OUTPUT_FOLDER_PATH = '../output'
-parquet_raw_levels = f"{PROCESSED_DATA_PATH}/raw_levels.parquet"
 parquet_monthly = f"{PROCESSED_DATA_PATH}/monthly.parquet"
 parquet_daily = f"{PROCESSED_DATA_PATH}/daily.parquet"
 parquet_fomc =f"{PROCESSED_DATA_PATH}/fomc_event_data.parquet"
@@ -29,6 +28,7 @@ class Sources:
    cpi_inflation = Source('cpi_inflation')
    IPI = Source('IPI')
    UST_10Y = Source('UST_10Y', '^TNX')
+   HY_OAS = Source('HY_OAS')
    USDMYR = Source('USDMYR', 'MYR=X')
    DXY = Source('DXY', 'DX-Y.NYB')
    VIX = Source('VIX', '^VIX')
