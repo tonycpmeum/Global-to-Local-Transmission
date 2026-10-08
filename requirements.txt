@@ -11,3 +11,5 @@ python-dotenv
 holidays
 openpyxl
 statsmodel
+dataframe_image
+jinja2
